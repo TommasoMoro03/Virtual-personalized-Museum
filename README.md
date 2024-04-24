@@ -1,4 +1,4 @@
-<h3>Virtual personalized museum</h3>
+<h2>Virtual personalized museum</h2>
 <p>The goal of this project is to allow users to have an immersive experience in the art. Through a voice-to-voice interaction, users can express their feelings to the system, 
 which will show them famous paintings based on their input.</p>
 <p>The aim is to simulate a virtual museum, so the "tourist" starts from an empty room without paintings and, as he asks and get feedback, he is redirected to other rooms of the museum, 
