@@ -1,0 +1,234 @@
+<html>
+    <head>
+        <title>Demo EesTech 2024</title>
+        <link rel="stylesheet" href="static/galleria.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+    <body>
+    
+        <input type="checkbox" id="lightswitch" accesskey="l" />
+        <input type="checkbox" checked="checked" id="wall4" accesskey="x" />
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label><label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label class="p1hover pointer" title="Tap to zoom - double tap to view code">
+  <a href="https://codepen.io/ivorjetski/pen/dBYWWZ" target="_blank"></a>
+  <label class="pointer"></label>
+</label>
+<label class="p1hover pointer" title="Tap to zoom - double tap to view code">
+  <a href="https://codepen.io/ivorjetski/pen/dBYWWZ" target="_blank"></a>
+  <label class="pointer"></label>
+</label>
+<label class="p1hover pointer" title="Tap to zoom - double tap to view code">
+  <a href="https://codepen.io/ivorjetski/pen/dBYWWZ" target="_blank"></a>
+  <label class="pointer"></label>
+</label>
+<label></label>
+<label class="p2hover pointer" title="Tap to zoom - double tap to view code">
+  <a href="https://codepen.io/ivorjetski/pen/xxGYWQG" target="_blank"></a>
+  <label class="pointer"></label>
+</label>
+<label class="p2hover pointer" title="Tap to zoom - double tap to view code">
+  <a href="https://codepen.io/ivorjetski/pen/xxGYWQG" target="_blank"></a>
+  <label class="pointer"></label>
+</label>
+<label class="p2hover pointer" title="Tap to zoom - double tap to view code">
+  <a href="https://codepen.io/ivorjetski/pen/xxGYWQG" target="_blank"></a>
+  <label class="pointer"></label>
+</label>
+<label></label>
+<label class="p3hover pointer" title="Tap to zoom - double tap to view code">
+  <a href="https://codepen.io/ivorjetski/pen/xMJoYO" target="_blank"></a>
+  <label class="pointer"></label>
+</label>
+<label class="p3hover pointer" title="Tap to zoom - double tap to view code">
+  <a href="https://codepen.io/ivorjetski/pen/xMJoYO" target="_blank"></a>
+  <label class="pointer"></label>
+</label>
+<label class="p3hover pointer" title="Tap to zoom - double tap to view code">
+  <a href="https://codepen.io/ivorjetski/pen/xMJoYO" target="_blank"></a>
+  <label class="pointer"></label>
+</label>
+<label class="pointer turn" for="wall4" title="Rotate right"></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+
+<z>
+  <x>
+    <y>
+      <floor></floor>
+      <ceiling></ceiling>
+      <wall1>
+        <painting>
+          <img id="img1" src="generative/montain.jpg" />
+          <p id="title1">
+            <br />
+            <small id="year1"></small>
+          </p>
+        </painting>
+      </wall1>
+      <wall2>
+        <painting>
+          <img id="img2" src="generative/montain.jpg" />
+          <p id="title2">
+            <br />
+            <small id="year2"></small>
+          </p>
+        </painting>
+      </wall2>
+      <wall3>
+        <painting>
+          <img id="img3" src="generative/montain.jpg" />
+          <p id="title3">
+            <br />
+            <small id="year3"></small>
+          </p>
+        </painting>
+      </wall3>
+      <wall4>
+
+        <notice>
+
+            <a id="startRecording" class="comandi">START JOURNEY</a>
+            <a id="endRecording" class="comandi" style="display:none;">STOP</a>
+            <a id="makeChoice" class="comandi" style="display:none;">EXPRESS YOUR FEELINGS</a>
+            <a id="restart" class="comandi" style="display:none;">RESTART</a>
+        
+        </notice>
+        <door>
+          <a target="_blank" title="Exit" href="https://codepen.io/ivorjetski">
+          </a>
+        </door>
+
+        <label for="lightswitch" class="pointer" title="Switch"></label>
+        <fireexit>
+          <i></i>
+          <i></i>
+        </fireexit>
+      </wall4>
+    </y>
+  </x>
+</z>
+
+<label class="turnback" title="Rotate left" for="wall4"></label>
+    </body>
+    <script>
+        const socket = new WebSocket("ws://localhost:8000/ws");
+
+        socket.addEventListener("error", (event) => {
+            console.error("WebSocket error:", event);
+        });
+
+        socket.addEventListener("close", (event) => {
+            console.log("WebSocket closed:", event);
+        });
+
+        document.getElementById("startRecording").addEventListener("click", () => {
+            // Verifica se il WebSocket è aperto prima di inviare il messaggio
+            document.getElementById("startRecording").style.display="none";
+            document.getElementById("makeChoice").style.display="none";
+            document.getElementById("endRecording").style.display="block";
+            if (socket.readyState === WebSocket.OPEN) {
+                socket.send("startRecording");
+                console.log("Messaggio 'startConversation' inviato con successo.");
+            } else {
+                console.warn("WebSocket is not open.");
+            }
+        });
+
+        document.getElementById("endRecording").addEventListener("click", () => {
+            document.getElementById("startRecording").style.display="none";
+            document.getElementById("makeChoice").style.display="block";
+            document.getElementById("endRecording").style.display="none";
+            // Verifica se il WebSocket è aperto prima di inviare il messaggio
+            if (socket.readyState === WebSocket.OPEN) {
+                socket.send("endRecording");
+                console.log("Messaggio 'endConversation' inviato con successo.");
+            } else {
+                console.warn("WebSocket is not open.");
+            }
+        });
+
+        document.getElementById("makeChoice").addEventListener("click", () => {
+            document.getElementById("startRecording").style.display="none";
+            document.getElementById("makeChoice").style.display="none";
+            document.getElementById("endRecording").style.display="block";
+            // Verifica se il WebSocket è aperto prima di inviare il messaggio
+            if (socket.readyState === WebSocket.OPEN) {
+                socket.send("startRecording");
+                console.log("Messaggio 'endConversation' inviato con successo.");
+            } else {
+                console.warn("WebSocket is not open.");
+            }
+        });
+
+        // Gestisci i messaggi in arrivo dal server
+        socket.addEventListener("message", (event) => {
+            var messaggio = event.data;
+            if(messaggio.startsWith("img")){
+                //document.getElementById("room").style.display="block";
+                var imageString = event.data;
+                const imageUrls = imageString.split("img");
+                imageUrls.shift();
+
+                for (let i = 0; i < imageUrls.length; i++) {
+                    const baseUrl = window.location.href;
+                    const baseUrlWithoutFilename = baseUrl.substr(0, baseUrl.lastIndexOf("/") + 1);
+                    const imgUrl = "images/img" + imageUrls[i];
+                    const imgElementId = "img" + (i + 1);
+                    document.getElementById("img" + (i+1)).style.display="block";
+                    const imgElement = document.getElementById(imgElementId);
+                    imgElement.classList.add('slide-down-animation');
+                    imgElement.src = imgUrl;
+                }
+            }else if(messaggio instanceof Blob){
+                const audioElement = new Audio(event.data);
+                audioElement.play();
+            }else if(messaggio == "ultimo"){
+                document.getElementById("startRecording").style.display="none";
+                document.getElementById("makeChoice").style.display="none";
+                document.getElementById("endRecording").style.display="none";
+                document.getElementById("restart").style.display="block";
+
+            }else if(messaggio.startsWith("montain")) {
+                document.getElementById("img1").src = "generative/montain.jpg"
+                document.getElementById("img2").src = "generative/image_1_ai.jpg";
+                document.getElementById("img3").src = "generative/montain.jpg";
+            }else if(messaggio.startsWith("titoli:")) {
+
+                var titoliStr = messaggio.replace("titoli:", "").replace("[", "").replace("]", "");
+                // Splitta la stringa utilizzando le virgole e rimuovi gli spazi bianchi
+                var titoliArray = titoliStr.split(",").map(function(item) {
+                    return item.trim().replace(/'/g, "");
+                });
+                for (var i = 0; i < titoliArray.length; i++) {
+                    var titolo = titoliArray[i];
+                    var divId = "title" + (i+1);
+                    document.getElementById(divId).innerHTML = titolo;
+                }
+            }else if(messaggio.startsWith("autori:")) {
+
+                var autoriStr = messaggio.replace("autori:", "").replace("[", "").replace("]", "");
+                // Splitta la stringa utilizzando le virgole e rimuovi gli spazi bianchi
+                var autoriArray = autoriStr.split(",").map(function(item) {
+                    return item.trim().replace(/'/g, "");
+                });
+                for (var i = 0; i < autoriArray.length; i++) {
+                    var autore = autoriArray[i];
+                    var divId = "title" + (i+1);
+                    document.getElementById(divId).innerHTML += ", "+autore;
+                }
+            }else if(messaggio.startsWith("anni:")) {
+
+                var anniStr = messaggio.replace("anni:", "").replace("[", "").replace("]", "");
+                // Splitta la stringa utilizzando le virgole e rimuovi gli spazi bianchi
+                var anniArray = anniStr.split(",").map(function(item) {
+                    return item.trim().replace(/'/g, "");
+                });
+                for (var i = 0; i < anniArray.length; i++) {
+                    var anno = anniArray[i];
+                    var divId = "year" + (i+1);
+                    document.getElementById(divId).innerHTML = anno;
+                }
+            }
+        });
+    </script>
+</html>

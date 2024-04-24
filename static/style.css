@@ -1,0 +1,73 @@
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: black;
+    font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif; 
+    height: 100%;
+    overflow: hidden; /* Impedisce lo scrolling su body e html */
+}
+
+.comandi {
+    margin-left: 50%;
+    transform: translate(-50%);
+    margin-top: 30px;
+    padding: 20px 100px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    border: none;
+}
+
+.room {
+  perspective: 1000px; /* Definisce la prospettiva */
+  width: 100%;
+  height: 600px; /* Altezza della stanza */
+  position: relative;
+}
+
+.wall {
+  position: absolute;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 30px;
+    height: 300px;
+}
+
+.image-container {
+  position: absolute;
+  top: 50%;
+  width: 200px; /* Larghezza delle immagini */
+  height: 200px; /* Altezza delle immagini */
+  transform-style: preserve-3d; /* Preserva la trasformazione 3D */
+}
+
+.image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image:nth-child(1) {
+  transform: translateZ(300px); /* Immagine davanti */
+  left: 50%;
+  margin-left: -100px; /* Metà della larghezza dell'immagine */
+}
+
+.image:nth-child(2) {
+  transform: rotateY(60deg) translateZ(300px); /* Immagine a destra */
+  right: 0;
+}
+
+.image:nth-child(3) {
+  transform: rotateY(-60deg) translateZ(300px); /* Immagine a sinistra */
+  left: 0;
+}
+
+#nascosto {
+  display: none;
+}
