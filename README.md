@@ -3,7 +3,7 @@
 which will show them famous paintings based on their input.</p>
 <p>The aim is to simulate a virtual museum, so the "tourist" starts from an empty room without paintings and, as he asks and get feedback, he is redirected to other rooms of the museum, 
 with a short vocal description that simulates the guide of the museum.</p>
-![alt text](https://github.com/TommasoMoro03/Virtual-personalized-Museum/new/main/demo.png?raw=true)
+<img src="https://github.com/TommasoMoro03/Virtual-personalized-Museum/blob/main/demo.png">
 <h5><b>How does it work?</b></h5>
 <p>We use these technologies for this project:</p>
 <ul>
